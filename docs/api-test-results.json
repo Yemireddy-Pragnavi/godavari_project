@@ -1,0 +1,231 @@
+{
+  "passed": 45,
+  "checks": "authentication, role isolation, immediate SOS, tracking privacy, restriction precedence, optimistic concurrency, valid verification, no-action plan, six scenario replay, transcript validation, observation ingestion, qualification enforcement, resource conflict, persistence and audit",
+  "timings": [
+    {
+      "path": "state",
+      "ms": 7,
+      "status": 401
+    },
+    {
+      "path": "session",
+      "ms": 2,
+      "status": 200
+    },
+    {
+      "path": "bootstrap",
+      "ms": 3,
+      "status": 200
+    },
+    {
+      "path": "state",
+      "ms": 2,
+      "status": 200
+    },
+    {
+      "path": "sos",
+      "ms": 1,
+      "status": 201
+    },
+    {
+      "path": "track",
+      "ms": 1,
+      "status": 404
+    },
+    {
+      "path": "track",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "session",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "corridor",
+      "ms": 1,
+      "status": 403
+    },
+    {
+      "path": "plan",
+      "ms": 1,
+      "status": 403
+    },
+    {
+      "path": "state",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "session",
+      "ms": 0,
+      "status": 200
+    },
+    {
+      "path": "corridor",
+      "ms": 0,
+      "status": 403
+    },
+    {
+      "path": "settings",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "session",
+      "ms": 0,
+      "status": 200
+    },
+    {
+      "path": "state",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "corridor",
+      "ms": 0,
+      "status": 409
+    },
+    {
+      "path": "corridor",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "session",
+      "ms": 0,
+      "status": 200
+    },
+    {
+      "path": "corridor",
+      "ms": 0,
+      "status": 409
+    },
+    {
+      "path": "session",
+      "ms": 0,
+      "status": 200
+    },
+    {
+      "path": "corridor",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "session",
+      "ms": 0,
+      "status": 200
+    },
+    {
+      "path": "corridor",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "corridor",
+      "ms": 0,
+      "status": 409
+    },
+    {
+      "path": "session",
+      "ms": 0,
+      "status": 200
+    },
+    {
+      "path": "plan",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "scenario",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "scenario",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "scenario",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "scenario",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "scenario",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "scenario",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "voice",
+      "ms": 1,
+      "status": 400
+    },
+    {
+      "path": "voice",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "observation",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "sos",
+      "ms": 1,
+      "status": 201
+    },
+    {
+      "path": "assign",
+      "ms": 1,
+      "status": 403
+    },
+    {
+      "path": "assign",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "assign",
+      "ms": 1,
+      "status": 409
+    },
+    {
+      "path": "session",
+      "ms": 0,
+      "status": 200
+    },
+    {
+      "path": "state",
+      "ms": 1,
+      "status": 200
+    },
+    {
+      "path": "export",
+      "ms": 0,
+      "status": 403
+    },
+    {
+      "path": "session",
+      "ms": 0,
+      "status": 200
+    },
+    {
+      "path": "state",
+      "ms": 2,
+      "status": 200
+    }
+  ]
+}

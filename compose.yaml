@@ -1,0 +1,33 @@
+services:
+  postgis:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_DB: guardian
+      POSTGRES_USER: guardian
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in your environment}
+    volumes:
+      - guardian_data:/var/lib/postgresql/data
+      - ./infra/postgis.sql:/docker-entrypoint-initdb.d/001_schema.sql:ro
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U guardian]
+      interval: 5s
+      retries: 10
+  research_api:
+    build:
+      context: .
+      dockerfile: services/Dockerfile
+    environment:
+      DATABASE_URL: postgresql://guardian:${POSTGRES_PASSWORD}@postgis/guardian
+      SERVICE_API_KEY: ${SERVICE_API_KEY:?Set SERVICE_API_KEY in your environment}
+      GNANI_API_KEY: ${GNANI_API_KEY:-}
+      GNANI_STT_ENDPOINT: ${GNANI_STT_ENDPOINT:-}
+      GNANI_STT_MODEL: ${GNANI_STT_MODEL:-}
+      GNANI_TTS_ENDPOINT: ${GNANI_TTS_ENDPOINT:-}
+      GNANI_TTS_MODEL: ${GNANI_TTS_MODEL:-}
+      GNANI_TTS_VOICE: ${GNANI_TTS_VOICE:-}
+    ports: ["127.0.0.1:8000:8000"]
+    depends_on:
+      postgis:
+        condition: service_healthy
+volumes:
+  guardian_data:
