@@ -1,3 +1,7 @@
+# Latest prototype update
+
+Online OpenStreetMap/Leaflet basemap, licensed MOT20 recorded-video inference replay, and atomic three-role water-rescue coordination are now included. See [HACKATHON_DEMO.md](HACKATHON_DEMO.md) and [dataset attribution](public/datasets/ATTRIBUTION.md). The map has synthetic corridor overlays; there is no live traffic feed. Video detections are computed offline and replayed, not live CCTV.
+
 # YatraRaksha GUARDIAN — RAISE
 
 A working public-safety research prototype for Godavari Pushkaralu PS-02. Brand palette: #000000, #FCAFC1, #3D7584, #89B8BF.

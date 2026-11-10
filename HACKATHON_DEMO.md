@@ -18,3 +18,12 @@ Crowd/camera observations and locations are synthetic. No ERSS-112, real ambulan
 
 ## Validation
 `node tests/run-api-local.mjs`: 45 existing API checks plus 20 additional alert API checks and 6 optimizer assertions, using the actual API handlers against SQLite with a D1-compatible adapter. TypeScript check and production build pass. Real-device hearing and background behavior need manual validation on the phone used at the event.
+
+## Dataset evidence and online map update
+
+- CCTV intelligence now includes the licensed MOT20-01 sequence (approximately 17 seconds). Play/scrub to inspect actual OpenCV HOG detections computed in advance. Select a demo corridor and a box-count review threshold, then save evidence. The server derives counts from the packaged inference result rather than trusting a browser count. A trigger can request inspection but cannot remove an active restriction or verify access. This is inference replay, not a live camera service.
+- Operational map now loads OpenStreetMap street tiles using Leaflet without WebGL. Pan/zoom and toggle the illustrative corridor overlay. The optional Locate my device action requires permission, stays local to the page, and includes accuracy. Tiles require Internet; no live traffic or crowd source is connected.
+- Incidents → Water-rescue coordination assigns three qualified responders atomically. Open each responder console, acknowledge, begin and complete tasks. Resolve via the incident details only after fresh Access officer verification; the server rejects premature resolution.
+- Validation: 97 API checks and six optimizer assertions pass with the actual route handlers on the SQLite test adapter. Production build and TypeScript pass. The video bundle records source and output SHA-256 hashes, OpenCV version, processing duration and all sampled detections. These are reproducibility measurements, not detection-accuracy results.
+- HOG detected 0–5 boxes per sampled frame in this dense train-station clip. It misses many visible people; use it to demonstrate evidence integration, not deployment-ready crowd counting. Follow public/datasets/ATTRIBUTION.md (CC BY-NC-SA 3.0) for the footage and derived outputs.
+- Reproduce: install services/requirements.txt and ffmpeg, then `python scripts/prepare-dataset.py`. OpenCV 4.x is required for the HOG implementation. Python services and Gnani still need a separately configured service/provider for live inference and transcription.

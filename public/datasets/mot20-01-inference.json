@@ -1,0 +1,966 @@
+{
+  "observations": [
+    {
+      "second": 0.0,
+      "category": "Person observation",
+      "count": 1,
+      "detections": [
+        {
+          "box": [
+            358,
+            138,
+            81,
+            161
+          ],
+          "score": 0.4118918408639729
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 719.0039927800495,
+      "brightness": 109.13157552083334,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 0.6,
+      "category": "Person observation",
+      "count": 2,
+      "detections": [
+        {
+          "box": [
+            486,
+            192,
+            88,
+            168
+          ],
+          "score": 0.6117833547759801
+        },
+        {
+          "box": [
+            450,
+            157,
+            74,
+            148
+          ],
+          "score": 0.18758354091551155
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 544.2693233066135,
+      "brightness": 111.92003038194444,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 1.2,
+      "category": "Person observation",
+      "count": 2,
+      "detections": [
+        {
+          "box": [
+            480,
+            174,
+            79,
+            158
+          ],
+          "score": 0.636990656144917
+        },
+        {
+          "box": [
+            321,
+            176,
+            66,
+            133
+          ],
+          "score": 0.20800486486405134
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 600.5947937160728,
+      "brightness": 112.56068142361111,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 1.8,
+      "category": "Person observation",
+      "count": 1,
+      "detections": [
+        {
+          "box": [
+            333,
+            159,
+            88,
+            175
+          ],
+          "score": 0.18935144180431962
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 645.4172972497822,
+      "brightness": 112.76529947916667,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 2.4,
+      "category": "Person observation",
+      "count": 3,
+      "detections": [
+        {
+          "box": [
+            420,
+            160,
+            84,
+            168
+          ],
+          "score": 1.0737993363291025
+        },
+        {
+          "box": [
+            360,
+            160,
+            87,
+            175
+          ],
+          "score": 0.42546477261930704
+        },
+        {
+          "box": [
+            465,
+            210,
+            79,
+            150
+          ],
+          "score": 0.8945623831823468
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 607.7715883219402,
+      "brightness": 113.1247092013889,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 3.0,
+      "category": "Person observation",
+      "count": 1,
+      "detections": [
+        {
+          "box": [
+            435,
+            203,
+            80,
+            157
+          ],
+          "score": 1.5193327602464706
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 589.8105979907377,
+      "brightness": 112.97446614583333,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 3.6,
+      "category": "Person observation",
+      "count": 1,
+      "detections": [
+        {
+          "box": [
+            279,
+            142,
+            73,
+            146
+          ],
+          "score": 0.3173528076149523
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 576.213574413893,
+      "brightness": 113.97338975694444,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 4.2,
+      "category": "Person observation",
+      "count": 2,
+      "detections": [
+        {
+          "box": [
+            286,
+            174,
+            97,
+            186
+          ],
+          "score": 0.32069750246591866
+        },
+        {
+          "box": [
+            119,
+            221,
+            70,
+            139
+          ],
+          "score": 0.9666365545708686
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 581.4699612765653,
+      "brightness": 113.93729166666667,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 4.8,
+      "category": "Person observation",
+      "count": 2,
+      "detections": [
+        {
+          "box": [
+            296,
+            171,
+            98,
+            189
+          ],
+          "score": 0.8536025970242918
+        },
+        {
+          "box": [
+            430,
+            217,
+            68,
+            136
+          ],
+          "score": 1.5350527120754123
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 604.6303903518487,
+      "brightness": 113.41752170138889,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 5.4,
+      "category": "Person observation",
+      "count": 2,
+      "detections": [
+        {
+          "box": [
+            388,
+            213,
+            75,
+            147
+          ],
+          "score": 1.2475464881863445
+        },
+        {
+          "box": [
+            445,
+            201,
+            67,
+            134
+          ],
+          "score": 0.677986083435826
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 546.1979303370158,
+      "brightness": 114.43220920138889,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 6.0,
+      "category": "Person observation",
+      "count": 2,
+      "detections": [
+        {
+          "box": [
+            350,
+            197,
+            84,
+            163
+          ],
+          "score": 0.9201172033790499
+        },
+        {
+          "box": [
+            536,
+            200,
+            73,
+            146
+          ],
+          "score": 0.6827385267242789
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 592.192017895941,
+      "brightness": 113.63920572916666,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 6.6,
+      "category": "Person observation",
+      "count": 2,
+      "detections": [
+        {
+          "box": [
+            316,
+            201,
+            82,
+            159
+          ],
+          "score": 0.8319978991057724
+        },
+        {
+          "box": [
+            358,
+            177,
+            95,
+            183
+          ],
+          "score": 0.6849062575493008
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 660.2865569548242,
+      "brightness": 112.7941796875,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 7.2,
+      "category": "Person observation",
+      "count": 3,
+      "detections": [
+        {
+          "box": [
+            353,
+            179,
+            94,
+            181
+          ],
+          "score": 0.6983161889947951
+        },
+        {
+          "box": [
+            314,
+            148,
+            73,
+            145
+          ],
+          "score": 0.33638144144788384
+        },
+        {
+          "box": [
+            176,
+            195,
+            69,
+            138
+          ],
+          "score": 0.37586926436051726
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 619.5226670803305,
+      "brightness": 112.17234375,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 7.8,
+      "category": "Person observation",
+      "count": 0,
+      "detections": [],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 603.4378820890449,
+      "brightness": 111.06750868055556,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 8.4,
+      "category": "Person observation",
+      "count": 0,
+      "detections": [],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 569.5087449286378,
+      "brightness": 111.24532552083333,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 9.0,
+      "category": "Person observation",
+      "count": 1,
+      "detections": [
+        {
+          "box": [
+            300,
+            138,
+            69,
+            138
+          ],
+          "score": 0.8558416180312634
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 612.8652978839451,
+      "brightness": 113.69327690972223,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 9.6,
+      "category": "Person observation",
+      "count": 1,
+      "detections": [
+        {
+          "box": [
+            236,
+            118,
+            95,
+            189
+          ],
+          "score": 0.8133153814123943
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 604.3802434605727,
+      "brightness": 115.42725694444445,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 10.2,
+      "category": "Person observation",
+      "count": 2,
+      "detections": [
+        {
+          "box": [
+            298,
+            137,
+            71,
+            141
+          ],
+          "score": 0.5417381571605802
+        },
+        {
+          "box": [
+            196,
+            174,
+            97,
+            186
+          ],
+          "score": 1.1097329859621823
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 693.3843242104424,
+      "brightness": 116.79832465277778,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 10.8,
+      "category": "Person observation",
+      "count": 2,
+      "detections": [
+        {
+          "box": [
+            302,
+            139,
+            71,
+            142
+          ],
+          "score": 0.5127546628937125
+        },
+        {
+          "box": [
+            187,
+            176,
+            94,
+            184
+          ],
+          "score": 1.1380861131474376
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 746.5541296725614,
+      "brightness": 115.63151041666667,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 11.4,
+      "category": "Person observation",
+      "count": 0,
+      "detections": [],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 618.4960739305284,
+      "brightness": 114.61389322916666,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 12.0,
+      "category": "Person observation",
+      "count": 2,
+      "detections": [
+        {
+          "box": [
+            318,
+            142,
+            72,
+            144
+          ],
+          "score": 0.13240689365193248
+        },
+        {
+          "box": [
+            361,
+            182,
+            66,
+            132
+          ],
+          "score": 0.9697297959355637
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 655.6486420705537,
+      "brightness": 114.32360243055555,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 12.6,
+      "category": "Person observation",
+      "count": 1,
+      "detections": [
+        {
+          "box": [
+            356,
+            182,
+            67,
+            134
+          ],
+          "score": 0.9275494079338387
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 657.6873924146864,
+      "brightness": 114.73001736111111,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 13.2,
+      "category": "Person observation",
+      "count": 0,
+      "detections": [],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 580.6896877881462,
+      "brightness": 115.25269097222223,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 13.8,
+      "category": "Person observation",
+      "count": 1,
+      "detections": [
+        {
+          "box": [
+            520,
+            213,
+            77,
+            147
+          ],
+          "score": 0.9374550133943558
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 622.0218603134156,
+      "brightness": 115.78944444444444,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 14.4,
+      "category": "Person observation",
+      "count": 5,
+      "detections": [
+        {
+          "box": [
+            131,
+            203,
+            83,
+            157
+          ],
+          "score": 0.3045002152211964
+        },
+        {
+          "box": [
+            506,
+            206,
+            82,
+            154
+          ],
+          "score": 0.6220044328365475
+        },
+        {
+          "box": [
+            258,
+            144,
+            72,
+            143
+          ],
+          "score": 0.30287043447606266
+        },
+        {
+          "box": [
+            330,
+            147,
+            71,
+            141
+          ],
+          "score": 0.29319490725174546
+        },
+        {
+          "box": [
+            483,
+            196,
+            70,
+            140
+          ],
+          "score": 0.574987122323364
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 565.4502959297839,
+      "brightness": 115.43631944444445,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 15.0,
+      "category": "Person observation",
+      "count": 2,
+      "detections": [
+        {
+          "box": [
+            503,
+            201,
+            82,
+            159
+          ],
+          "score": 0.6621489035896957
+        },
+        {
+          "box": [
+            361,
+            172,
+            74,
+            149
+          ],
+          "score": 1.1802269178442657
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 624.3813781681014,
+      "brightness": 113.1341232638889,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 15.6,
+      "category": "Person observation",
+      "count": 0,
+      "detections": [],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 586.3557378953722,
+      "brightness": 112.58513888888889,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 16.2,
+      "category": "Person observation",
+      "count": 3,
+      "detections": [
+        {
+          "box": [
+            514,
+            193,
+            85,
+            167
+          ],
+          "score": 1.2272376893088222
+        },
+        {
+          "box": [
+            243,
+            137,
+            79,
+            158
+          ],
+          "score": 0.7630850423593074
+        },
+        {
+          "box": [
+            359,
+            171,
+            100,
+            189
+          ],
+          "score": 0.125383346574381
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 588.5903818895129,
+      "brightness": 111.7394140625,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    },
+    {
+      "second": 16.8,
+      "category": "Person observation",
+      "count": 1,
+      "detections": [
+        {
+          "box": [
+            497,
+            195,
+            77,
+            154
+          ],
+          "score": 0.10060125892050564
+        }
+      ],
+      "roi": [
+        0,
+        0,
+        640,
+        360
+      ],
+      "blur_variance": 538.9588759400921,
+      "brightness": 112.47259114583333,
+      "model": "OpenCV HOG default people detector",
+      "review": "Pending",
+      "inference": "actual local model",
+      "uncertainty": "Uncalibrated; occlusion may hide people"
+    }
+  ],
+  "frames_decoded": 429,
+  "elapsed_seconds": 0.4992064630000641,
+  "restriction": "No automatic clearance, drowning classification, or emergency confirmation",
+  "source": "https://motchallenge.net/sequenceVideos/MOT20-01-raw.mp4",
+  "dataset": "MOT20-01",
+  "license": "CC BY-NC-SA 3.0",
+  "video_sha256": "577df6122cb2bae74cef5fa3e11f2fb0d715e2526e3e838b91c2da500e1f912e",
+  "source_sha256": "0105c42857c50f73c6ec50d3456f9bb8a04cbe45944bf7bbc3c77dc755feeae8",
+  "opencv_version": "4.11.0",
+  "width": 640,
+  "height": 360
+}
