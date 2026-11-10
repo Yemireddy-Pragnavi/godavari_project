@@ -1,0 +1,364 @@
+{
+  "id": "BENCH-FB013AE0",
+  "kind": "benchmark",
+  "benchmarkVersion": "policy-simulation-v1",
+  "iterations": 100,
+  "scenarios": [
+    {
+      "name": "Unverified clear-looking image",
+      "state": "UNKNOWN",
+      "cameraClear": true,
+      "available": true,
+      "occupied": false,
+      "coverage": "Covered"
+    },
+    {
+      "name": "Restriction despite clear image",
+      "state": "RESTRICTED",
+      "cameraClear": true,
+      "available": true,
+      "occupied": false,
+      "coverage": "Covered"
+    },
+    {
+      "name": "Expired field clearance",
+      "state": "VERIFICATION_EXPIRED",
+      "cameraClear": true,
+      "available": true,
+      "occupied": false,
+      "coverage": "Covered"
+    },
+    {
+      "name": "Officer already reserved",
+      "state": "POSSIBLE_OBSTRUCTION",
+      "cameraClear": false,
+      "available": true,
+      "occupied": true,
+      "coverage": "Covered"
+    },
+    {
+      "name": "No officer on shift",
+      "state": "UNKNOWN",
+      "cameraClear": false,
+      "available": false,
+      "occupied": false,
+      "coverage": "Partial"
+    },
+    {
+      "name": "Fresh verified access",
+      "state": "VERIFIED_ACCESSIBLE",
+      "cameraClear": true,
+      "available": true,
+      "occupied": false,
+      "coverage": "Covered"
+    }
+  ],
+  "rows": [
+    {
+      "scenario": "Unverified clear-looking image",
+      "policy": "A · Camera alert only",
+      "meanComputeMs": 0.00057,
+      "inappropriateRecommendations": 1,
+      "resourceConflicts": 0,
+      "taskCount": 0,
+      "plannedActions": 0,
+      "unresolvedConfirmations": 1,
+      "recommended": true
+    },
+    {
+      "scenario": "Unverified clear-looking image",
+      "policy": "B · Camera + assignment",
+      "meanComputeMs": 0.0001,
+      "inappropriateRecommendations": 1,
+      "resourceConflicts": 0,
+      "taskCount": 1,
+      "plannedActions": 1,
+      "unresolvedConfirmations": 1,
+      "recommended": true
+    },
+    {
+      "scenario": "Unverified clear-looking image",
+      "policy": "C · Dynamic availability",
+      "meanComputeMs": 0.00012,
+      "inappropriateRecommendations": 1,
+      "resourceConflicts": 0,
+      "taskCount": 1,
+      "plannedActions": 1,
+      "unresolvedConfirmations": 1,
+      "recommended": true
+    },
+    {
+      "scenario": "Unverified clear-looking image",
+      "policy": "D · RAISE verified interventions",
+      "meanComputeMs": 0.03407,
+      "inappropriateRecommendations": 0,
+      "resourceConflicts": 0,
+      "taskCount": 1,
+      "plannedActions": 1,
+      "unresolvedConfirmations": 1,
+      "recommended": false
+    },
+    {
+      "scenario": "Restriction despite clear image",
+      "policy": "A · Camera alert only",
+      "meanComputeMs": 0.00005,
+      "inappropriateRecommendations": 1,
+      "resourceConflicts": 0,
+      "taskCount": 0,
+      "plannedActions": 0,
+      "unresolvedConfirmations": 1,
+      "recommended": true
+    },
+    {
+      "scenario": "Restriction despite clear image",
+      "policy": "B · Camera + assignment",
+      "meanComputeMs": 0.00004,
+      "inappropriateRecommendations": 1,
+      "resourceConflicts": 0,
+      "taskCount": 1,
+      "plannedActions": 1,
+      "unresolvedConfirmations": 1,
+      "recommended": true
+    },
+    {
+      "scenario": "Restriction despite clear image",
+      "policy": "C · Dynamic availability",
+      "meanComputeMs": 0.00009,
+      "inappropriateRecommendations": 0,
+      "resourceConflicts": 0,
+      "taskCount": 1,
+      "plannedActions": 1,
+      "unresolvedConfirmations": 1,
+      "recommended": false
+    },
+    {
+      "scenario": "Restriction despite clear image",
+      "policy": "D · RAISE verified interventions",
+      "meanComputeMs": 0.03313,
+      "inappropriateRecommendations": 0,
+      "resourceConflicts": 0,
+      "taskCount": 1,
+      "plannedActions": 2,
+      "unresolvedConfirmations": 1,
+      "recommended": false
+    },
+    {
+      "scenario": "Expired field clearance",
+      "policy": "A · Camera alert only",
+      "meanComputeMs": 0.00004,
+      "inappropriateRecommendations": 1,
+      "resourceConflicts": 0,
+      "taskCount": 0,
+      "plannedActions": 0,
+      "unresolvedConfirmations": 1,
+      "recommended": true
+    },
+    {
+      "scenario": "Expired field clearance",
+      "policy": "B · Camera + assignment",
+      "meanComputeMs": 0.00004,
+      "inappropriateRecommendations": 1,
+      "resourceConflicts": 0,
+      "taskCount": 1,
+      "plannedActions": 1,
+      "unresolvedConfirmations": 1,
+      "recommended": true
+    },
+    {
+      "scenario": "Expired field clearance",
+      "policy": "C · Dynamic availability",
+      "meanComputeMs": 0.00009,
+      "inappropriateRecommendations": 1,
+      "resourceConflicts": 0,
+      "taskCount": 1,
+      "plannedActions": 1,
+      "unresolvedConfirmations": 1,
+      "recommended": true
+    },
+    {
+      "scenario": "Expired field clearance",
+      "policy": "D · RAISE verified interventions",
+      "meanComputeMs": 0.03543,
+      "inappropriateRecommendations": 0,
+      "resourceConflicts": 0,
+      "taskCount": 1,
+      "plannedActions": 1,
+      "unresolvedConfirmations": 1,
+      "recommended": false
+    },
+    {
+      "scenario": "Officer already reserved",
+      "policy": "A · Camera alert only",
+      "meanComputeMs": 0.00003,
+      "inappropriateRecommendations": 0,
+      "resourceConflicts": 0,
+      "taskCount": 0,
+      "plannedActions": 0,
+      "unresolvedConfirmations": 1,
+      "recommended": false
+    },
+    {
+      "scenario": "Officer already reserved",
+      "policy": "B · Camera + assignment",
+      "meanComputeMs": 0.00003,
+      "inappropriateRecommendations": 0,
+      "resourceConflicts": 1,
+      "taskCount": 1,
+      "plannedActions": 1,
+      "unresolvedConfirmations": 1,
+      "recommended": false
+    },
+    {
+      "scenario": "Officer already reserved",
+      "policy": "C · Dynamic availability",
+      "meanComputeMs": 0.00005,
+      "inappropriateRecommendations": 0,
+      "resourceConflicts": 0,
+      "taskCount": 0,
+      "plannedActions": 1,
+      "unresolvedConfirmations": 1,
+      "recommended": false
+    },
+    {
+      "scenario": "Officer already reserved",
+      "policy": "D · RAISE verified interventions",
+      "meanComputeMs": 0.00043,
+      "inappropriateRecommendations": 0,
+      "resourceConflicts": 0,
+      "taskCount": 0,
+      "plannedActions": 0,
+      "unresolvedConfirmations": 1,
+      "recommended": false
+    },
+    {
+      "scenario": "No officer on shift",
+      "policy": "A · Camera alert only",
+      "meanComputeMs": 0.00003,
+      "inappropriateRecommendations": 0,
+      "resourceConflicts": 0,
+      "taskCount": 0,
+      "plannedActions": 0,
+      "unresolvedConfirmations": 1,
+      "recommended": false
+    },
+    {
+      "scenario": "No officer on shift",
+      "policy": "B · Camera + assignment",
+      "meanComputeMs": 0.00003,
+      "inappropriateRecommendations": 0,
+      "resourceConflicts": 1,
+      "taskCount": 1,
+      "plannedActions": 1,
+      "unresolvedConfirmations": 1,
+      "recommended": false
+    },
+    {
+      "scenario": "No officer on shift",
+      "policy": "C · Dynamic availability",
+      "meanComputeMs": 0.00004,
+      "inappropriateRecommendations": 0,
+      "resourceConflicts": 0,
+      "taskCount": 0,
+      "plannedActions": 1,
+      "unresolvedConfirmations": 1,
+      "recommended": false
+    },
+    {
+      "scenario": "No officer on shift",
+      "policy": "D · RAISE verified interventions",
+      "meanComputeMs": 0.00057,
+      "inappropriateRecommendations": 0,
+      "resourceConflicts": 0,
+      "taskCount": 0,
+      "plannedActions": 0,
+      "unresolvedConfirmations": 1,
+      "recommended": false
+    },
+    {
+      "scenario": "Fresh verified access",
+      "policy": "A · Camera alert only",
+      "meanComputeMs": 0.00003,
+      "inappropriateRecommendations": 0,
+      "resourceConflicts": 0,
+      "taskCount": 0,
+      "plannedActions": 0,
+      "unresolvedConfirmations": 0,
+      "recommended": true
+    },
+    {
+      "scenario": "Fresh verified access",
+      "policy": "B · Camera + assignment",
+      "meanComputeMs": 0.00003,
+      "inappropriateRecommendations": 0,
+      "resourceConflicts": 0,
+      "taskCount": 1,
+      "plannedActions": 1,
+      "unresolvedConfirmations": 0,
+      "recommended": true
+    },
+    {
+      "scenario": "Fresh verified access",
+      "policy": "C · Dynamic availability",
+      "meanComputeMs": 0.00006,
+      "inappropriateRecommendations": 0,
+      "resourceConflicts": 0,
+      "taskCount": 0,
+      "plannedActions": 1,
+      "unresolvedConfirmations": 0,
+      "recommended": true
+    },
+    {
+      "scenario": "Fresh verified access",
+      "policy": "D · RAISE verified interventions",
+      "meanComputeMs": 0.00232,
+      "inappropriateRecommendations": 0,
+      "resourceConflicts": 0,
+      "taskCount": 0,
+      "plannedActions": 0,
+      "unresolvedConfirmations": 0,
+      "recommended": true
+    }
+  ],
+  "summary": [
+    {
+      "policy": "A · Camera alert only",
+      "inappropriateRecommendations": 3,
+      "resourceConflicts": 0,
+      "taskCount": 0,
+      "unresolvedConfirmations": 5,
+      "meanComputeMs": 0.00012
+    },
+    {
+      "policy": "B · Camera + assignment",
+      "inappropriateRecommendations": 3,
+      "resourceConflicts": 2,
+      "taskCount": 6,
+      "unresolvedConfirmations": 5,
+      "meanComputeMs": 0.00005
+    },
+    {
+      "policy": "C · Dynamic availability",
+      "inappropriateRecommendations": 2,
+      "resourceConflicts": 0,
+      "taskCount": 3,
+      "unresolvedConfirmations": 5,
+      "meanComputeMs": 0.00008
+    },
+    {
+      "policy": "D · RAISE verified interventions",
+      "inappropriateRecommendations": 0,
+      "resourceConflicts": 0,
+      "taskCount": 3,
+      "unresolvedConfirmations": 5,
+      "meanComputeMs": 0.01766
+    }
+  ],
+  "definitions": [
+    "A: clear camera image recommends access; no task.",
+    "B: camera rule plus one assignment regardless of availability.",
+    "C: camera rule excludes restrictions and only assigns unreserved on-shift officers; does not require fresh field evidence.",
+    "D: existing RAISE solver; only fresh verified access is recommended; qualified unreserved personnel only."
+  ],
+  "limits": "Synthetic policy comparison; baseline behaviors are assumptions, not industry performance. All unverified cases remain unresolved until real field confirmation. Timing uses the runtime clock; zero means below timer resolution. CPU measurements exclude network, human response and travel. No emergency response-time improvement is claimed.",
+  "created": "2026-11-10T13:46:45.272Z"
+}

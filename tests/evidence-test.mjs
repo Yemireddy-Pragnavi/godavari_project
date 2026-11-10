@@ -13,15 +13,21 @@ await globalThis.__guardianDB.prepare('DELETE FROM reservations').run();
 const incident=await call('sos',{category:'Water rescue',location:'Coordination test'},sup.token,201);
 state=await call('state',null,sup.token);let i=state.records.find(x=>x.id===incident.id);
 await call('coordinate',{incident:i.id,version:i.version,corridor:'COR-C'},volunteer.token,403);
+i=await call('incident',{id:i.id,version:i.version,status:'UNDER_REVIEW'},sup.token);
 await call('coordinate',{incident:i.id,version:i.version-1,corridor:'COR-C'},sup.token,409);
 i=await call('coordinate',{incident:i.id,version:i.version,corridor:'COR-C'},sup.token);assert.equal(i.teamTasks.length,3);
 await call('coordinate',{incident:i.id,version:i.version,corridor:'COR-C'},sup.token,409);
 state=await call('state',null,sup.token);const tasks=state.records.filter(t=>i.teamTasks.includes(t.id));assert.deepEqual(new Set(tasks.map(t=>t.role)),new Set(['Water-rescue responder','Medical responder','Access officer']));
+for(let t of tasks){const updated=await call('task',{id:t.id,version:t.version,status:'ACKNOWLEDGED'},sup.token);Object.assign(t,updated)}
+i=await call('incident',{id:i.id,version:i.version,status:'RESPONSE_ACKNOWLEDGED'},sup.token);
 i=await call('incident',{id:i.id,version:i.version,status:'ON_SCENE'},sup.token);
 await call('incident',{id:i.id,version:i.version,status:'RESOLVED'},sup.token,409);
-for(let t of tasks){for(const status of ['ACKNOWLEDGED','IN_PROGRESS','COMPLETED'])t=await call('task',{id:t.id,version:t.version,status},sup.token)}
+for(let t of tasks){for(const status of ['IN_PROGRESS','COMPLETED'])t=await call('task',{id:t.id,version:t.version,status},sup.token)}
 await call('incident',{id:i.id,version:i.version,status:'RESOLVED'},sup.token,409);
 c=(await call('state',null,sup.token)).records.find(x=>x.id==='COR-C');c=await call('corridor',{id:c.id,version:c.version,action:'lift'},sup.token);
 const officer=await call('session',{role:'Access officer',responderId:'R-03'});await call('corridor',{id:c.id,version:c.version,action:'verify'},officer.token);
+await call('incident',{id:i.id,version:i.version,status:'RESOLVED'},sup.token,409);
+const med=await call('session',{role:'Medical responder',responderId:tasks.find(t=>t.role==='Medical responder').responder});
+i=await call('handoff',{id:i.id,version:i.version,destination:'Training medical post',note:'Receiving team accepted the simulated patient transfer.',confirmed:true},med.token);
 i=await call('incident',{id:i.id,version:i.version,status:'RESOLVED'},sup.token);assert.equal(i.status,'RESOLVED');
 console.log(JSON.stringify({evidenceAndTeamApiChecks:count,result:'passed'}));

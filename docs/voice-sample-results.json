@@ -1,0 +1,64 @@
+[
+  {
+    "file": "01_Clear_Telugu_Drowning_Report.wav",
+    "status": 201,
+    "roundTripMs": 9686,
+    "result": {
+      "transcript": "అలా ట్రైన్ లో మెట్ల మీద నిలబడి నీళ్ళలో పారిపోయారు. మినేట మాది.",
+      "model": "prisma-v3.0",
+      "requestId": "01a1c5b1-f2e3-70cf-a087-600e47edac10",
+      "language": "te-IN",
+      "duration": 10.1606875,
+      "elapsedMs": 2210,
+      "extracted": {
+        "category": "Unclassified",
+        "landmark": "",
+        "method": "Keyword suggestions — operator confirmation required"
+      },
+      "id": "VOICE-6E210A10",
+      "kind": "voice",
+      "role": "Supervisor",
+      "responder": null,
+      "source": "Gnani Prisma API",
+      "created": "2026-11-10T13:42:17.475Z",
+      "status": "Needs operator review",
+      "simulated": false
+    },
+    "intendedScript": "అన్నా, పుష్కర్ ఘాట్ రెండో మెట్ల దగ్గర ఒక వ్యక్తి నీళ్లలో పడిపోయారు. వెంటనే సహాయం కావాలి.",
+    "expectedLandmarkRecovered": false,
+    "acceptance": "FAIL — missing landmark and material transcript mismatch",
+    "provenance": "User-supplied WAV; human versus synthesized origin not verified",
+    "accuracyNote": "Compared to the user-supplied intended script, not a verified manual transcription of the audio. Do not interpret as population speech accuracy."
+  },
+  {
+    "file": "02_Noisy_Telugu_English_Corridor_Report.wav",
+    "status": 201,
+    "roundTripMs": 7827,
+    "result": {
+      "transcript": "ఇక్కడ అలాగే టీ గార్డెన్, ఆవు పెట్టుకున్న గారు ఉంది, అంబులెన్స్ గూడ్స్ లాగా అమ్ముతోంది. మింతలే యాక్తేనా మీ సరతా బావి?",
+      "model": "prisma-v3.0",
+      "requestId": "01a1c5b2-1410-70a8-abf7-83695b9876a0",
+      "language": "te-IN",
+      "duration": 11.6576875,
+      "elapsedMs": 914,
+      "extracted": {
+        "category": "Medical emergency",
+        "landmark": "",
+        "method": "Keyword suggestions — operator confirmation required"
+      },
+      "id": "VOICE-FD236369",
+      "kind": "voice",
+      "role": "Supervisor",
+      "responder": null,
+      "source": "Gnani Prisma API",
+      "created": "2026-11-10T13:42:25.295Z",
+      "status": "Needs operator review",
+      "simulated": false
+    },
+    "intendedScript": "Pushkar Ghat Gate B దగ్గర crowd ఎక్కువగా ఉంది. Ambulance route block అవుతోంది. వెంటనే access officer కావాలి.",
+    "expectedLandmarkRecovered": false,
+    "acceptance": "FAIL — missing landmark and material transcript mismatch",
+    "provenance": "User-supplied WAV; human versus synthesized origin not verified",
+    "accuracyNote": "Compared to the user-supplied intended script, not a verified manual transcription of the audio. Do not interpret as population speech accuracy."
+  }
+]
