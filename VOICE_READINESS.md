@@ -8,11 +8,11 @@ Authentication, same-origin mutations, role permissions, file validation, provid
 
 ## Checklist gaps still requiring evidence
 
-- Live Gnani success must be demonstrated on the deployed app; the development network returned HTTP 403 on the provider test.
+- Live hosted English roundtrip passed on 2026-11-10: Timbre returned HTTP 200 and a 211,244-byte WAV; Prisma returned HTTP 201 through the app, transcribing the 4.4-second training clip correctly in 1,419 ms. This is a synthetic-speech integration test, not a human-speech accuracy benchmark. Telugu/Hindi and noisy phone recordings remain to be tested. The development network returned HTTP 403, while the deployed server worked.
 - The rescue team workflow exists, but a separately verified clinical handoff record is still needed.
 - CCTV is a licensed prerecorded dataset with offline HOG detections, not live ghat surveillance. Crowded-scene detection quality remains limited.
 - RAISE uses an exact constrained subset search, not a deployed CP-SAT solver. No field response-time improvement is claimed.
 - Real responder accounts, background push/telephony, 112 integration, live staffing/location feeds and medical agency onboarding remain external integration work.
 - Record a complete multi-device drill with acknowledgments, restriction precedence, fresh verification, stale evidence rejection and resolution. Measure actual drill timings separately from simulation.
 
-Validation: existing API suites plus mocked Gnani adapter checks and TypeScript/build checks. English/Telugu/Hindi recognition quality still requires representative human recordings and provider access.
+Validation: 97 existing API checks, six optimizer assertions, 10 mocked Gnani adapter checks, TypeScript/build checks, browser-tested manual incident creation, and the live hosted English speech/transcription roundtrip. English/Telugu/Hindi recognition quality still requires representative human recordings and provider access.
