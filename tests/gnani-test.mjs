@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {validateWav,extractReport,transcribeGnani,synthesizeGnani} from '../.sites-runtime/api-tests/gnani.mjs';
+const b=new Uint8Array(32044),v=new DataView(b.buffer);for(const [p,s] of [[0,'RIFF'],[8,'WAVE'],[12,'fmt '],[36,'data']])for(let i=0;i<s.length;i++)b[p+i]=s.charCodeAt(i);v.setUint32(4,b.length-8,true);v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,16000,true);v.setUint16(34,16,true);v.setUint32(40,32000,true);
+assert.equal(validateWav(b),1);assert.throws(()=>validateWav(new Uint8Array(44)));assert.equal(extractReport('Pushkar ghat passage blocked').category,'Safety obstruction');assert.equal(extractReport('hello').category,'Unclassified');
+await assert.rejects(()=>transcribeGnani('',b,'en-IN'),/not configured/);await assert.rejects(()=>transcribeGnani('test',b,'invalid'),/Unsupported/);
+const x=await transcribeGnani('test',b,'te-IN',async(url,init)=>{assert.equal(url,'https://api.vachana.ai/stt/v3');assert.equal(init.headers['X-API-Key-ID'],'test');assert.equal(init.body.get('model'),'prisma-v3.0');return Response.json({success:true,transcript:'దారి మూసుకుపోయింది',request_id:'test-request'})});assert.equal(x.requestId,'test-request');
+await assert.rejects(()=>transcribeGnani('test',b,'en-IN',async()=>new Response('',{status:403})),/key or service scope/);
+await assert.rejects(()=>synthesizeGnani('test','x'.repeat(501),'en-IN'),/500/);
+assert.equal((await synthesizeGnani('test','Training alert','en-IN',async()=>new Response(b))).byteLength,b.length);
+console.log('10 Gnani adapter checks passed (mocked provider; no claim of live recognition).');

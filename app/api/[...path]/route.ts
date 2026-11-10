@@ -1,3 +1,4 @@
+import {transcribeGnani,synthesizeGnani} from '../../../lib/gnani';
 import {videoEvidence} from '../../../lib/video-evidence';
 import {env} from 'cloudflare:workers';
 import {seed} from '../../../lib/seed';
@@ -15,7 +16,7 @@ async function put(x:any,version:number){const result=await db().prepare('UPDATE
 async function notify(title:string,message:string){await insert({id:id('NOTE'),kind:'notification',title,message,read:false,created:now()}).run();}
 async function incident(b:any){if(!b.category||!b.location)throw Error('400:Category and location are required');const recent=(await all('incident')).filter((x:any)=>x.category===b.category&&x.location===b.location&&Date.now()-Date.parse(x.created)<300000);const x={id:id('INC'),kind:'incident',title:String(b.title||b.category+' reported').slice(0,120),category:b.category,location:String(b.location).slice(0,160),description:String(b.description||'').slice(0,2000),priority:'Needs review',status:'RECEIVED',created:now(),source:b.source||'Public report',simulated:true,assignment:'Pending',access:'Awaiting review',handoff:'Not requested',possibleDuplicates:recent.map((r:any)=>r.id),trackingToken:crypto.randomUUID()};await insert(x).run();await notify('New report · '+x.id,x.title);return x;}
 async function handler(req:Request){try{
- const path=new URL(req.url).pathname.replace(/^\/api\//,'');const method=req.method;const bearer=req.headers.get('authorization')?.replace(/^Bearer /,'');const cookie=bearer||req.headers.get('cookie')?.match(/guardian_session=([^;]+)/)?.[1];const session=cookie?await db().prepare('SELECT * FROM sessions WHERE token=? AND expires>?').bind(cookie,Date.now()).first():null;let b:any={};if(method!=='GET'){b=await req.json().catch(()=>({}));if(JSON.stringify(b).length>25000)throw Error('413:Request too large');const origin=req.headers.get('origin');if(origin&&origin!==new URL(req.url).origin)throw Error('403:Cross-origin mutation rejected');}
+ const path=new URL(req.url).pathname.replace(/^\/api\//,'');const method=req.method;const bearer=req.headers.get('authorization')?.replace(/^Bearer /,'');const cookie=bearer||req.headers.get('cookie')?.match(/guardian_session=([^;]+)/)?.[1];const session=cookie?await db().prepare('SELECT * FROM sessions WHERE token=? AND expires>?').bind(cookie,Date.now()).first():null;let b:any={};if(method!=='GET'){if(path!=='voice-transcribe')b=await req.json().catch(()=>({}));if(JSON.stringify(b).length>25000)throw Error('413:Request too large');const origin=req.headers.get('origin');if(origin&&origin!==new URL(req.url).origin)throw Error('403:Cross-origin mutation rejected');}
  if(path==='session'&&method==='POST'){
   // The entire hosted site is owner-private. These are deliberate synthetic role sessions, not employee accounts.
   if(!roles.includes(b.role))throw Error('400:Unknown role');const members=(await all('responder')).filter((r:any)=>r.role===b.role);const selected=members.find((r:any)=>r.id===b.responderId)||members[0];if(b.responderId&&!members.some((r:any)=>r.id===b.responderId))throw Error('403:Responder does not match selected role');const token=crypto.randomUUID();await db().prepare('INSERT INTO sessions(token,role,name,responder,expires) VALUES(?,?,?,?,?)').bind(token,b.role,selected?.name||'Demo '+b.role,selected?.id||null,Date.now()+8*3600000).run();return json({role:b.role,name:selected?.name||'Demo '+b.role,responderId:selected?.id||null,token},200,{'Set-Cookie':`guardian_session=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=28800${new URL(req.url).protocol==='https:'?'; Secure':''}`});
@@ -26,9 +27,27 @@ async function handler(req:Request){try{
  if(path==='track'&&method==='POST'){const x=await get(b.id);if(x.kind!=='incident'||x.trackingToken!==b.token)throw Error('404:Report not found');return json({id:x.id,status:x.status,assignment:x.assignment,access:x.access,handoff:x.handoff});}
  if(!session)throw Error('401:Sign in to a demo role');const role=session.role;
  const permit=(a:string)=>{if(!allowed(role,a))throw Error('403:This role cannot perform '+a)};
+ if(path==='voice-status'&&method==='GET')return json({configured:!!(env as any).GNANI_API_KEY,transcription:'prisma-v3.0',speech:'timbre-v3.0'});
+ if(['voice-transcribe','voice-synthesize'].includes(path)&&method==='POST'){
+  if(role==='Devotee')throw Error('403:Operational session required');
+  const owner=crypto.randomUUID(),stamp=Date.now();
+  const lock=await db().prepare("INSERT INTO records(id,kind,data,version,updated) VALUES('VOICE-LEASE','internal',?,1,?) ON CONFLICT(id) DO UPDATE SET data=excluded.data,updated=excluded.updated WHERE CAST(json_extract(records.data,'$.until') AS INTEGER)<?").bind(JSON.stringify({owner,until:stamp+45000}),now(),stamp).run();
+  if(!lock.meta.changes)throw Error('429:Another speech request is running. Retry shortly');
+  try{
+   if(path==='voice-synthesize'){const audio=await synthesizeGnani((env as any).GNANI_API_KEY,String(b.text||''),String(b.language||'en-IN'));await log(session.name,'Gnani speech generated','voice',null,{model:'timbre-v3.0',language:b.language});return new Response(audio,{headers:{'Content-Type':'audio/wav','Cache-Control':'no-store'}})}
+   if(Number(req.headers.get('content-length')||0)>2100000)throw Error('413:Audio request too large');
+   const form=await req.formData(),file=form.get('audio');if(!file||typeof file==='string'||file.size>2000000)throw Error('400:Attach a WAV recording under 2 MB');
+   const result=await transcribeGnani((env as any).GNANI_API_KEY,new Uint8Array(await file.arrayBuffer()),String(form.get('language')||'en-IN'));
+   const x={...result,id:id('VOICE'),kind:'voice',role,responder:session.responder,source:'Gnani Prisma API',created:now(),status:'Needs operator review',simulated:false};await insert(x).run();await log(session.name,'Gnani transcript received',x.id,null,{model:x.model,requestId:x.requestId});return json(x,201);
+  }finally{await db().prepare("DELETE FROM records WHERE id='VOICE-LEASE' AND json_extract(data,'$.owner')=?").bind(owner).run()}
+ }
+ if(path==='voice-incident'&&method==='POST'){
+  permit('assign');const voice=await get(b.id);if(voice.kind!=='voice')throw Error('400:Select a voice report');if(!b.confirmed)throw Error('400:Review the transcript and location first');
+  const x=await incident({category:b.category,location:b.location,description:b.transcript,source:'Reviewed voice report '+voice.id});await log(session.name,'Voice report reviewed and incident created',x.id,{voiceId:voice.id,original:voice.transcript},{reviewed:b.transcript,category:b.category,location:b.location});return json(x,201);
+ }
  if(path==='bootstrap'&&method==='POST'){if(!['Supervisor','Administrator'].includes(role))throw Error('403:Demo initialization requires a supervisor');const count=await db().prepare('SELECT count(*) n FROM records').first();if(!count.n)await db().batch(seed().map(insert));return json({ok:true});}
  if(path==='state'&&method==='GET'){
-  const records=(await all()).map((x:any)=>x.kind==='corridor'?{...x,state:effective(x)}:x);const publicOnly=role==='Devotee';const field=['Access officer','Medical responder','Water-rescue responder','Volunteer'].includes(role);
+  const records=(await all()).filter((x:any)=>x.kind!=='internal').map((x:any)=>x.kind==='corridor'?{...x,state:effective(x)}:x);const publicOnly=role==='Devotee';const field=['Access officer','Medical responder','Water-rescue responder','Volunteer'].includes(role);
   const visible=records.filter((x:any)=> publicOnly?x.kind==='advisory':field?['corridor','advisory','settings'].includes(x.kind)||(x.kind==='observation'&&role==='Access officer')||(x.kind==='voice'&&x.role===role)||(x.kind==='task'&&x.responder===session.responder)||(x.kind==='responder'&&x.role===role)||(x.kind==='notification'&&x.responder===session.responder):true).map((x:any)=>{const {trackingToken,...rest}=x;return rest});
   const auditRows=!publicOnly&&!field?(await db().prepare('SELECT * FROM audit ORDER BY time DESC LIMIT 100').all()).results:[];return json({role,responderId:session.responder,displayName:session.name,records:visible,audit:auditRows,permissions:Object.keys({approve:1,restrict:1,verify:1,observe:1,assign:1,scenario:1,settings:1,advisory:1}).filter(a=>allowed(role,a)),serverTime:now()});
  }
