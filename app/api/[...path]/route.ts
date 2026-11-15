@@ -44,6 +44,38 @@ async function handler(req:Request){try{
    const x={...result,id:id('VOICE'),kind:'voice',role,responder:session.responder,source:'Gnani Prisma API',created:now(),status:'Needs operator review',simulated:false};await insert(x).run();await log(session.name,'Gnani transcript received',x.id,null,{model:x.model,requestId:x.requestId});return json(x,201);
   }finally{await db().prepare("DELETE FROM records WHERE id='VOICE-LEASE' AND json_extract(data,'$.owner')=?").bind(owner).run()}
  }
+ if(path==='voice-corridor'&&method==='POST'){
+  // A voice report is evidence to review, never authority to declare a route safe.
+  permit('observe');
+  if(b.confirmed!==true)throw Error('400:An operator must confirm the transcript and location');
+  const voice=await get(String(b.voiceId||''));
+  if(voice.kind!=='voice')throw Error('400:Select a persisted voice report');
+  if(['Access officer','Camera operator'].includes(role)&&voice.responder&&voice.responder!==session.responder)throw Error('403:Voice report belongs to another responder');
+  const transcript=String(b.reviewedTranscript||voice.transcript||'').trim();
+  if(transcript.length<8||transcript.length>3000)throw Error('400:Provide the reviewed transcript');
+  const c=await get(String(b.corridor||''));
+  if(c.kind!=='corridor')throw Error('400:Select an existing corridor');
+  if(c.version!==b.version)throw Error('409:Corridor changed; review fresh evidence');
+  const key='VOICE-OBS-'+voice.id;
+  const prior=await db().prepare('SELECT id FROM records WHERE id=?').bind(key).first();
+  if(prior)throw Error('409:This voice report already produced corridor evidence');
+  const observation={id:key,kind:'observation',category:'Voice-reported possible obstruction',corridor:c.id,
+   voiceId:voice.id,transcript,originalTranscript:voice.transcript,language:voice.language,
+   source:voice.source,model:voice.model||null,review:'Operator confirmed report; physical verification pending',
+   created:now(),reportedBy:session.name,simulated:voice.simulated===true};
+  // A report may restrict readiness, but never clear a restricted segment.
+  const updated={...c,...(c.state==='RESTRICTED'?{}:{state:'POSSIBLE_OBSTRUCTION',expires:null}),latestObservation:key};
+  const next={...updated,version:c.version+1};
+  const proposal=await proposed(next,key);
+  try{
+   await guardedBatch([c],[insert(observation),
+    db().prepare('UPDATE records SET data=?,version=version+1,updated=? WHERE id=? AND version=?').bind(JSON.stringify(updated),now(),c.id,c.version),
+    insert(proposal)]);
+  }catch{throw Error('409:Evidence or corridor changed. Refresh and retry')}
+  await log(session.name,'Reviewed voice obstruction linked to RAISE',key,null,{observation,plan:proposal.id,corridorVersion:next.version});
+  await notify('Voice obstruction requires verification',c.name+' · '+voice.id);
+  return json({observation,plan:proposal,corridor:{...updated,version:next.version},requiresFieldVerification:true},201);
+ }
  if(path==='voice-incident'&&method==='POST'){
   permit('assign');const voice=await get(b.id);if(voice.kind!=='voice')throw Error('400:Select a voice report');if(!b.confirmed)throw Error('400:Review the transcript and location first');
   const x=await incident({category:b.category,location:b.location,description:b.transcript,source:'Reviewed voice report '+voice.id});await log(session.name,'Voice report reviewed and incident created',x.id,{voiceId:voice.id,original:voice.transcript},{reviewed:b.transcript,category:b.category,location:b.location});return json(x,201);

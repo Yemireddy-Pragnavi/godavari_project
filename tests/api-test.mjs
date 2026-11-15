@@ -19,6 +19,17 @@ await request('corridor',{id:c.id,version:c.version-1,action:'restrict'},409);
 await request('session',{role:'Supervisor'});const empty=await request('plan',{corridor:c.id});assert.equal(empty.options.length,0);
 for(let number=1;number<=6;number++){const run=await request('scenario',{number});assert.equal(run.status,'Completed');if(number===6)assert.match(run.result.staleUpdate,/409/)}
 await request('voice',{transcript:''},400);await request('voice',{transcript:'The corridor is blocked',language:'English',location:'East steps'});
+state=await request('state');
+const manualVoice=state.records.find(r=>r.kind==='voice'&&r.source==='Manual transcript — not Gnani output');
+const voiceCorridor=state.records.find(r=>r.id==='COR-B');
+assert(manualVoice&&voiceCorridor);
+await request('voice-corridor',{voiceId:manualVoice.id,corridor:voiceCorridor.id,version:voiceCorridor.version,confirmed:false},400);
+const linkedVoice=await request('voice-corridor',{voiceId:manualVoice.id,corridor:voiceCorridor.id,version:voiceCorridor.version,confirmed:true,reviewedTranscript:'Gate B access corridor is blocked by a crowd'},201);
+assert.equal(linkedVoice.observation.voiceId,manualVoice.id);
+assert.equal(linkedVoice.plan.sourceObservation,linkedVoice.observation.id);
+assert.equal(linkedVoice.requiresFieldVerification,true);
+assert.notEqual(linkedVoice.corridor.state,'VERIFIED_ACCESSIBLE');
+await request('voice-corridor',{voiceId:manualVoice.id,corridor:voiceCorridor.id,version:linkedVoice.corridor.version,confirmed:true,reviewedTranscript:'Gate B access corridor is blocked'},409);
 await request('observation',{camera:'CAM-02',category:'Possible obstruction',value:90});
 const inc=await request('sos',{category:'Water rescue',location:'TEST east steps'},201);
 await request('assign',{incident:inc.id,responder:'R-04'},403);await request('assign',{incident:inc.id,responder:'R-01'});await request('assign',{incident:inc.id,responder:'R-01'},409);
